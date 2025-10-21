@@ -18,12 +18,11 @@ class PostFactory extends Factory
     public function definition(): array
     {
         $userId = User::inRandomOrder()->first();
-        $random = rand(0, 1); // true for image, false for video
         return [
             'user_id' => $userId,
             'content' => fake()->paragraph(),
-            'image' => $random ? fake()->url() : null,
-            'video' => $random ? null : fake()->url(),
+            'image_path' => null,
+            'video_path' => null,
             'view_count' => fake()->numberBetween(0, 1000),
         ];
     }

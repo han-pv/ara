@@ -20,14 +20,11 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
 
-        // User::factory()->create([
-        //     'username' => 'abdyreshit777',
-        //     'name' => 'Abdyreshit',
-        //     'surname' => 'Ashirmyradov',
-        //     'email' => 'abdyreshit@example.com'
-        // ]);
+        User::factory()->create([
+            'username' => 'user'
+        ]);
 
-        Post::factory(500)->create();
+        Post::factory(50)->create();
 
         $users = User::all(); //10
         $posts = Post::all(); //500

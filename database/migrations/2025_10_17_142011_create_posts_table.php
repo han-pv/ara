@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->text('content');
-            $table->string('image')->nullable();
-            $table->string('video')->nullable();
+            $table->string('image_path')->nullable();
+            $table->string('video_path')->nullable();
             $table->integer('view_count')->default(0);
             $table->timestamps();
         });
