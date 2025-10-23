@@ -13,16 +13,32 @@
 
 <body>
     @include('client.alert.app')
-    <form action="{{ route('login') }}" method="post">
-        @csrf
-        <label for="username">Username: </label><br>
-        <input type="text" name="username" id="username"><br><br>
+    <div class="container-xxl">
+        <div class="d-flex align-items-center justify-content-center vh-100">
 
-        <label for="password">Password: </label><br>
-        <input type="password" name="password" id="password"><br><br>
+            <form action="{{ route('login') }}" method="post" class="col-10 col-md-8 col-lg-6 col-xl-4">
+                <div class="h2 fw-bold text-center mb-5">Login</div>
+                @csrf
+                <div class="w-100">
+                    <label for="username" class="h6 form-label">Username: </label>
+                    <input type="text" class="form-control" name="username" id="username" value="{{ old('username') }}">
+                    @error('username')
+                        <div class="text-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror
 
-        <button type="submit">Submit</button>
-    </form>
+                </div>
+
+                <div class="w-100 mt-3">
+                    <label for="password" class="h6 form-label">Password: </label>
+                    <input type="password" id="password" name="password" class="form-control">
+                </div>
+
+                <button type="submit" class="btn btn-success w-100 mt-4">Submit</button>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

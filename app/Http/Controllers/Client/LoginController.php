@@ -16,7 +16,7 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         $credentials = $request->validate([
-            'username' => ['required', 'string'],
+            'username' => ['required', 'string', "min:3"],
             'password' => ['required'],
         ]);
 
@@ -41,7 +41,7 @@ class LoginController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->route('posts.index')
+        return redirect()->route('welcome')
             ->with([
                 'success' => 'Ustunlikli cykys edildi',
             ]);
