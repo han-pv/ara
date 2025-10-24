@@ -50,8 +50,8 @@
                     <span id="ara">ARA</span>
                 </div>
             </div>
-            <a href="{{ route('login') }}" class="btn btn-dark">Login <i class="bi-box-arrow-in-right"></i> </a>
-            <a href="{{ route('register') }}" class="btn btn-outline-success ms-2">Register Now <i
+            <a href="{{ route('login') }}" class="btn btn-dark">{{ __('app.login') }} <i class="bi-box-arrow-in-right"></i> </a>
+            <a href="{{ route('register') }}" class="btn btn-outline-success ms-2">{{ __("app.registerNow") }} <i
                     class="bi-person-plus"></i></a>
         </div>
         <script>

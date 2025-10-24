@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -39,7 +40,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'content' => ['required', 'string'],
+            'text' => ['required', 'string'],
             'image' => ['nullable', 'mimes:jpg,png,jpeg', 'max:2048'],
         ]);
 
@@ -47,9 +48,11 @@ class PostController extends Controller
             $imagePath = $request->file('image')->store('images/post-images', 'public');
         }
 
+        $user = Auth::user()->id;
+        
         Post::create([
-            'user_id' => 1,
-            'content' => $request->content,
+            'user_id' => $user,
+            'content' => $request->text,
             'image_path' => $imagePath ? $imagePath : null,
             'view_count' => 0,
         ]);

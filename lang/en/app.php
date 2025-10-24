@@ -1,4 +1,7 @@
 <?php
 return [
-    "welcome" => "Welcome",
+    "welcome" => "Welcome !",
+    "login" => "Login",
+    "registerNow" => "Register Now",
+     "category" => "Category"
 ];

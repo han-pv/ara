@@ -1,4 +1,7 @@
 <?php
 return [
-    "welcome" => "Hoş Geldiňiz",
+    "welcome" => "Hoş geldiňiz !",
+    "category" => "Kategoriýa",
+    "login" => "Giriş",
+    "registerNow" => "Agza bol",
 ];
