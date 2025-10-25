@@ -15,8 +15,9 @@
 
 <body>
     @include('client.alert.app')
+    @include('client.partials.nav')
 
-    <div class="container">
+    <div class="container mt-4">
         <div class="row">
             <div class="col-lg-3 sidebar">
                 @include('client.partials.sidebar')

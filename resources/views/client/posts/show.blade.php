@@ -1,30 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('client.layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+@section('content')
 
-<body>
-    <div class="" style="display: flex; justify-content: space-between; width: 50%;">
-        <h1>Post Show</h1>
-
-        <form action="{{ route('posts.destroy', $post->id) }}" method="post">
-            @csrf
-            @method('delete')
-            <input type="hidden">
-            <button style="background-color: red; padding: 10px;">Delete</button>
-        </form>
+    <a href="{{ route('posts.index') }}" class="h2">
+        <i class="bi bi-arrow-left"></i>
+    </a>
+    <div class="post-card">
+        <div class="post-header">
+            <div class="post-user">
+                <img src="{{ asset('img/avatar.jpg') }}" alt="User">
+                <div class="post-user-info">
+                    <h6>{{ $post->user->username }}</h6>
+                    <small>2 hours ago</small>
+                </div>
+            </div>
+            <i class="bi bi-three-dots" style="cursor: pointer; color: var(--text-muted);"></i>
+        </div>
+        <div class="text-decoration-none text-dark">
+            <!-- <img src="{{ asset('storage/' . $post->image_path) }}" alt="Post" class="post-image"> -->
+            <div class="post-content short-content">
+                {{ $post->content }}
+            </div>
+        </div>
+        <div class="post-stats">
+            <span>234 {{ __('app.likes') }}</span>
+            <span>45 {{ __('app.comments') }} · 12 {{ __('app.shares') }}</span>
+        </div>
+        <div class="post-interactions">
+            <button class="interaction-btn">
+                <i class="bi bi-heart"></i>
+                <span>{{ __('app.like') }}</span>
+            </button>
+            <button class="interaction-btn">
+                <i class="bi bi-chat"></i>
+                <span>{{ __("app.comment") }}</span>
+            </button>
+            <button class="interaction-btn">
+                <i class="bi bi-share"></i>
+                <span>{{ __('app.share') }}</span>
+            </button>
+        </div>
     </div>
-    <br>
-    <hr>
-    <h3> {{ $post->id }} <br></h3>
-    <h3> {{ $post->content }} <br></h3>
-    <!-- <h3>Image: {{ $post->image_path }} <br></h3> -->
-    <img src="{{ asset('storage/' . $post->image_path) }}" style="width: 250px;" alt="">
-    <h3>Video: {{ $post->video_path }} <br></h3>
-</body>
-
-</html>
+@endsection

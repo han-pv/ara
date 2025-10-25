@@ -1,26 +1,65 @@
 @extends('client.layouts.app')
 
 @section('content')
+    <!-- Create Post -->
+    <div class="create-post">
+        <div class="create-post-input">
+            <img src="{{ asset('img/avatar.jpg') }}" alt="User">
+            <input type="text" placeholder="{{ __('app.whatsOnYourMind') }}">
+        </div>
+        <div class="post-actions">
+            <button class="post-action-btn">
+                <i class="bi bi-image" style="color: #10b981;"></i>
+                <span>{{ __('app.photo') }}</span>
+            </button>
+            <button class="post-action-btn">
+                <i class="bi bi-play-btn" style="color: #ef4444;"></i>
+                <span>{{ __('app.video') }}</span>
+            </button>
+            <button class="post-action-btn">
+                <i class="bi bi-emoji-smile" style="color: #f59e0b;"></i>
+                <span>{{ __('app.feeling') }}</span>
+            </button>
+        </div>
+    </div>
 
- <!-- [http://192.168.3.177:8000] -->
-
-    <form action="{{ route('logout') }}" method="post">
-        @csrf
-        <input type="hidden">
-        <button type="submit">LogOut</button>
-    </form>
+    <!-- Posts -->
     @foreach ($posts as $post)
-        <a href="{{ route('posts.show', [$post->id]) }}">
-            <br><br>
-            <hr>
-            <h3> {{ $post->user->username }} <br></h3>
-            <h3> {{ $post->user->name }} <br></h3>
-            <h3> {{ $post->id }} <br></h3>
-            <h3> {{ $post->content }} <br></h3>
-            <!-- <h3>Image: {{ $post->image_path }} <br></h3> -->
-            <img src="{{ asset('storage/' . $post->image_path) }}" style="width: 250px;" alt="">
-            <h3>Video: {{ $post->video_path }} <br></h3>
-        </a>
-
+        <div class="post-card">
+            <div class="post-header">
+                <div class="post-user">
+                    <img src="{{ asset('img/avatar.jpg') }}" alt="User">
+                    <div class="post-user-info">
+                        <h6>{{ $post->user->username }}</h6>
+                        <small>2 hours ago</small>
+                    </div>
+                </div>
+                <i class="bi bi-three-dots" style="cursor: pointer; color: var(--text-muted);"></i>
+            </div>
+            <a href="{{ route('posts.show', [$post->id]) }}" class="text-decoration-none text-dark">
+                <!-- <img src="{{ asset('') }}" alt="Post" class="post-image"> -->
+                <div class="post-content short-content">
+                    {{ $post->content  }}
+                </div>
+            </a>
+            <div class="post-stats">
+                <span>234 {{ __('app.likes') }}</span>
+                <span>45 {{ __('app.comments') }} · 12 {{ __('app.shares') }}</span>
+            </div>
+            <div class="post-interactions">
+                <button class="interaction-btn">
+                    <i class="bi bi-heart"></i>
+                    <span>{{ __('app.like') }}</span>
+                </button>
+                <button class="interaction-btn">
+                    <i class="bi bi-chat"></i>
+                    <span>{{ __("app.comment") }}</span>
+                </button>
+                <button class="interaction-btn">
+                    <i class="bi bi-share"></i>
+                    <span>{{ __('app.share') }}</span>
+                </button>
+            </div>
+        </div>
     @endforeach
 @endsection

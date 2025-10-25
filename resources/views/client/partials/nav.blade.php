@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg">
     <div class="container">
-        <a class="navbar-brand" href="#">SocialHub</a>
+        <a class="navbar-brand" href="#">ARA</a>
 
         <div class="search-bar mx-auto">
             <input type="text" class="form-control" placeholder="Search...">
@@ -13,7 +13,7 @@
                 <span class="notification-badge">5</span>
             </div>
             <i class="bi bi-chat-dots nav-icon"></i>
-            <img src="https://i.pravatar.cc/150?img=12" alt="Profile" class="profile-avatar">
+            <img src="{{ asset('img/avatar.jpg') }}" alt="Profile" class="profile-avatar">
         </div>
     </div>
 </nav>
