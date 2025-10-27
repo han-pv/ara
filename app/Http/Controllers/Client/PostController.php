@@ -13,7 +13,8 @@ class PostController extends Controller
     public function index()
     {
 
-        $posts = Post::orderBy('id', 'desc')
+        $posts = Post::withCount('likes')
+            ->orderBy('created_at', 'desc')
             ->take(10)
             ->get();
 
@@ -23,7 +24,8 @@ class PostController extends Controller
 
     }
 
-    public function show($id) {
+    public function show($id)
+    {
 
         $post = Post::where('id', $id)->firstOrFail();
 
@@ -44,12 +46,12 @@ class PostController extends Controller
             'image' => ['nullable', 'mimes:jpg,png,jpeg', 'max:2048'],
         ]);
 
-        if($request->hasFile('image')){
+        if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('images/post-images', 'public');
         }
 
         $user = Auth::user()->id;
-        
+
         Post::create([
             'user_id' => $user,
             'content' => $request->text,
@@ -62,10 +64,11 @@ class PostController extends Controller
         ]);
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $post = Post::where('id', $id)->firstOrFail();
 
-        if($post->image_path) {
+        if ($post->image_path) {
             Storage::disk('public')->delete($post->image_path);
         }
 

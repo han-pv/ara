@@ -11,7 +11,7 @@ class Post extends Model
 {
     use HasFactory;
 
-       protected $fillable = [
+    protected $fillable = [
         'user_id',
         'content',
         'image_path',
@@ -32,5 +32,11 @@ class Post extends Model
     public function likes(): HasMany
     {
         return $this->hasMany(Like::class);
+    }
+
+    public function LikedBy(User $user)
+    {
+
+        return $this->likes()->where('user_id', $user->id)->exists();
     }
 }

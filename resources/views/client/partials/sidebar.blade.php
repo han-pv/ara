@@ -2,8 +2,8 @@
     <div class="profile-cover"></div>
     <div class="profile-info">
         <img src="{{ asset('img/avatar.jpg') }}" alt="Profile" class="profile-photo">
-        <h5 class="profile-name">John Smith</h5>
-        <p class="profile-username">@johnsmith</p>
+        <h5 class="profile-name">{{ auth()->user()->name . " " . auth()->user()->surname  }}</h5>
+        <p class="profile-username">{{ auth()->user()->username }}</p>
         <div class="profile-stats">
             <div class="stat-item">
                 <div class="stat-number">324</div>

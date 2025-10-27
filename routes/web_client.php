@@ -1,6 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\LikeController;
 use App\Http\Controllers\Client\PostController;
 use App\Http\Controllers\Client\LoginController;
 use App\Http\Controllers\Client\RegisterController;
@@ -41,4 +42,6 @@ Route::middleware('auth')
                 Route::get('', 'index')->name('index');
                 Route::get('/{id}', 'show')->name('show')->where('id', '[0-9]+');
             });
+
+        Route::post('/like/{postId}', [LikeController::class, 'toggle'])->name('post.like');
     });

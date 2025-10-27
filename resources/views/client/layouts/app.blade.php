@@ -14,8 +14,8 @@
 </head>
 
 <body>
-    @include('client.alert.app')
     @include('client.partials.nav')
+    @include('client.alert.app')
 
     <div class="container mt-4">
         <div class="row">
