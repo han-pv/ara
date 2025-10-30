@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -43,7 +44,7 @@ class User extends Authenticatable
     {
         return $this->hasOne(Post::class);
     }
-    
+
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
@@ -59,4 +60,18 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
+    public function followers(): HasMany
+    {
+        return $this->hasMany(Follow::class, 'follower_id');
+    }
+
+    public function following(): HasMany
+    {
+        return $this->hasMany(Follow::class, 'following_id');
+    }
+
+    public function isFollow($user)
+    {
+        return $this->following()->where('follower_id', $user->id)->exists();
+    }
 }

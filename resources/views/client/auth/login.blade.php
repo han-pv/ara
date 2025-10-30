@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    @include('client.alert.app')
+    @include('client.partials.alert')
     <div class="container-xxl">
         <div class="d-flex align-items-center justify-content-center vh-100">
 

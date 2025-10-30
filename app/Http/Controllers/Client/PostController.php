@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Client;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,6 +14,7 @@ class PostController extends Controller
     public function index()
     {
 
+        //User AppServiceProviders icinden gelya
         $posts = Post::withCount('likes')
             ->orderBy('created_at', 'desc')
             ->take(10)
@@ -36,7 +38,13 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('client.posts.create');
+        $user = User::where('id', Auth::user()->id)
+            ->withCount('posts', 'followers', 'following')
+            ->first();
+
+        return view('client.posts.create')->with([
+            'user' => $user
+        ]);
     }
 
     public function store(Request $request)

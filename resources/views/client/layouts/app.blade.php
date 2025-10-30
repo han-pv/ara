@@ -15,7 +15,7 @@
 
 <body>
     @include('client.partials.nav')
-    @include('client.alert.app')
+    @include('client.partials.alert')
 
     <div class="container mt-4">
         <div class="row">
@@ -23,12 +23,12 @@
                 @include('client.partials.sidebar')
             </div>
 
-            <div class="col-lg-6">
+            <div class="col-lg-7">
                 @yield('content')
             </div>
 
             <div class="col-lg-3 right-sidebar">
-                @include('client.partials.right-sidebar')
+                <!--     -->
             </div>
         </div>
     </div>

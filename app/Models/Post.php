@@ -36,7 +36,6 @@ class Post extends Model
 
     public function LikedBy(User $user)
     {
-
         return $this->likes()->where('user_id', $user->id)->exists();
     }
 }

@@ -2,19 +2,19 @@
     <div class="profile-cover"></div>
     <div class="profile-info">
         <img src="{{ asset('img/avatar.jpg') }}" alt="Profile" class="profile-photo">
-        <h5 class="profile-name">{{ auth()->user()->name . " " . auth()->user()->surname  }}</h5>
-        <p class="profile-username">{{ auth()->user()->username }}</p>
+        <h5 class="profile-name">{{ $user->name . " " . $user->surname  }}</h5>
+        <p class="profile-username">{{  $user->username }}</p>
         <div class="profile-stats">
             <div class="stat-item">
-                <div class="stat-number">324</div>
+                <div class="stat-number">{{ $user->posts_count }}</div>
                 <div class="stat-label">{{ __('app.posts') }}</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">1.2K</div>
+                <div class="stat-number">{{ $user->followers_count  }}</div>
                 <div class="stat-label">{{  __('app.followers') }}</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">856</div>
+                <div class="stat-number">{{ $user->following_count  }}</div>
                 <div class="stat-label">{{ __('app.followings')  }}</div>
             </div>
         </div>
@@ -26,9 +26,9 @@
         <i class="bi bi-house-door-fill"></i>
         <span>{{ __('app.home') }}</span>
     </a>
-    <a href="#" class="menu-item">
-        <i class="bi bi-compass"></i>
-        <span>{{ __('app.explore') }}</span>
+    <a href="{{ route('users.index') }}" class="menu-item">
+        <i class="bi bi-people"></i>
+        <span>{{ __('app.users') }}</span>
     </a>
     <a href="#" class="menu-item">
         <i class="bi bi-people"></i>

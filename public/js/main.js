@@ -17,21 +17,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Follow button
-    document.querySelectorAll('.follow-btn').forEach(btn => {
-        btn.addEventListener('click', function () {
-            if (this.textContent === 'Follow') {
-                this.textContent = 'Following';
-                this.style.background = 'var(--secondary-color)';
-                this.style.color = 'var(--text-dark)';
-            } else {
-                this.textContent = 'Follow';
-                this.style.background = 'var(--primary-color)';
-                this.style.color = 'white';
-            }
-        });
-    });
-
     // Expand post content
     document.querySelectorAll('.post-content:not(.short-content)').forEach(content => {
         content.addEventListener('click', function (e) {

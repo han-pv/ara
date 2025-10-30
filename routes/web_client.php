@@ -1,9 +1,12 @@
 <?php
+use App\Models\Follow;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\LikeController;
 use App\Http\Controllers\Client\PostController;
+use App\Http\Controllers\Client\UserController;
 use App\Http\Controllers\Client\LoginController;
+use App\Http\Controllers\Client\FollowController;
 use App\Http\Controllers\Client\RegisterController;
 
 Route::get('/', function () {
@@ -41,7 +44,17 @@ Route::middleware('auth')
 
                 Route::get('', 'index')->name('index');
                 Route::get('/{id}', 'show')->name('show')->where('id', '[0-9]+');
+                Route::get('/{id}/like', 'like')->name('like')->where('id', '[0-9]+');
             });
 
         Route::post('/like/{postId}', [LikeController::class, 'toggle'])->name('post.like');
+        Route::post('/follow/{userId}', [FollowController::class, 'toggle'])->name('follow');
+
+        Route::controller(UserController::class)
+            ->prefix('users')
+            ->name('users.')
+            ->group(function () {
+                Route::get('', 'index')->name('index');
+                Route::get('/{id}', 'show')->name('show')->where('id', '[0-9]+');
+            });
     });
