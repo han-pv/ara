@@ -7,11 +7,23 @@
                 <small>{{ $post->created_at->diffForHumans() }}</small>
             </div>
         </div>
-        <i class="bi bi-three-dots" style="cursor: pointer; color: var(--text-muted);"></i>
+        @if ($post->user->id == auth()->id())
+            <div>
+                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-outline-warning"><i
+                        class="bi bi-pencil"></i></a>
+            </div>
+
+        @endif
     </div>
     <a href="{{ route('posts.show', [$post->id]) }}" class="text-decoration-none text-dark">
         @if ($post->image_path)
             <img src="{{ asset('storage/' . $post->image_path) }}" alt="Post" class="post-image">
+        @endif
+        @if ($post->created_at != $post->updated_at)
+            <div class="fst-italic text-secondary">
+                <i class="bi bi-pencil"></i>
+                {{ __('app.edited') }}
+            </div>
         @endif
         <div class="post-content short-content">
             {{ $post->content  }}

@@ -22,11 +22,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::composer('client.partials.sidebar', function ($view) {
-            $user = User::where('id', Auth::user()->id)
-                ->withCount('posts', 'followers', 'following')
-                ->first();
-            $view->with('user', $user);
-        });
+        //Eger sidebar-da user profile gorunmeli bolsa
+
+        // View::composer('client.partials.sidebar', function ($view) {
+        //     $user = User::where('id', Auth::user()->id)
+        //         ->withCount('posts', 'followers', 'following')
+        //         ->first();
+        //     $view->with('user', $user);
+        // });
     }
 }

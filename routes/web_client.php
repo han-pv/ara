@@ -7,11 +7,10 @@ use App\Http\Controllers\Client\PostController;
 use App\Http\Controllers\Client\UserController;
 use App\Http\Controllers\Client\LoginController;
 use App\Http\Controllers\Client\FollowController;
+use App\Http\Controllers\Client\ProfileController;
 use App\Http\Controllers\Client\RegisterController;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/',  [HomeController::class, 'index'])->name('home');
 
 Route::get('locale/{locale}', [HomeController::class, 'locale'])->name('locale')->where('locale', '[a-z]+');
 
@@ -46,6 +45,13 @@ Route::middleware('auth')
                 Route::get('/{id}', 'show')->name('show')->where('id', '[0-9]+');
                 Route::get('/{id}/like', 'like')->name('like')->where('id', '[0-9]+');
             });
+
+        Route::controller(ProfileController::class)
+        ->prefix('profile')
+        ->name('profile.')
+        ->group(function() {
+            Route::get('', 'show')->name('show');
+        });
 
         Route::post('/like/{postId}', [LikeController::class, 'toggle'])->name('post.like');
         Route::post('/follow/{userId}', [FollowController::class, 'toggle'])->name('follow');

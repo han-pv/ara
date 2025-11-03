@@ -38,13 +38,7 @@ class PostController extends Controller
 
     public function create()
     {
-        $user = User::where('id', Auth::user()->id)
-            ->withCount('posts', 'followers', 'following')
-            ->first();
-
-        return view('client.posts.create')->with([
-            'user' => $user
-        ]);
+        return view('client.posts.create');
     }
 
     public function store(Request $request)
@@ -67,8 +61,39 @@ class PostController extends Controller
             'view_count' => 0,
         ]);
 
+        // $post = new Post();
+        // $post->user_id = $user;
+        // $post->content = $request->text;
+        // $post->image_path = $imagePath ? $imagePath : null;
+        // $post->save();
+
         return to_route('posts.index')->with([
             'success' => 'Postunyz ustunlikli doredildi'
+        ]);
+    }
+
+
+    public function edit($id)
+    {
+        $post = Post::where('id', $id)->firstOrFail();
+
+        return view('client.posts.edit')->with([
+            'post' => $post
+        ]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'text' => ['required', 'string'],
+        ]);
+
+        $post = Post::where('id', $id)->firstOrFail();
+        $post->content = $request->text;
+        $post->save();
+
+        return to_route('profile.show')->with([
+            'success' => 'Post ustunlikli uytgedildi'
         ]);
     }
 

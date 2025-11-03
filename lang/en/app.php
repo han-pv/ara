@@ -48,5 +48,7 @@ return [
     "createNewPost" => "Create New Post",
     "content" => "Content",
     "image" => "Image",
-    "follow" => "Follow"
+    "follow" => "Follow",
+    "notFoundPost" => "Post Not Found",
+    "addPost" => "Add new post"
 ];
