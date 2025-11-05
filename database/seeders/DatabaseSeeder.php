@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin;
 use App\Models\Like;
 use App\Models\Post;
 use App\Models\User;
@@ -19,6 +20,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        Admin::create([
+            'username' => "admin",
+            'name' => "Admin",
+            'surname' => "Admin",
+            'password' => bcrypt("password"),
+        ]);
+
         User::factory(10)->create();
 
         User::factory()->create([
