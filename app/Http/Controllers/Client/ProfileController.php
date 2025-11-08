@@ -23,18 +23,9 @@ class ProfileController extends Controller
 
 
         return view('client.profile.show')->with([
-            'user' => $user, 'profile' => $myProfile, 'myPosts' => $myPosts,
+            'user' => $user,
+            'profile' => $myProfile,
+            'myPosts' => $myPosts,
         ]);
     }
-
-    public function edit()
-    {
-        $user = User::where('id', Auth::user()->id)->first();
-
-        $myProfile = Profile::where('user_id', $user->id)->first();
-
-        return view('client.profile.edit')->with([
-            'user' => $user, 'profile' => $myProfile,
-        ]);
-    }   
 }
