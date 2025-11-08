@@ -4,20 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ARA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.min.css') }}">
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 </head>
 
-<body>
-    @include('client.partials.alert')
+<body class="bg-dark text-light">
+    @include('admin.partials.alert')
     <div class="container-xxl">
         <div class="d-flex align-items-center justify-content-center vh-100">
 
-            <form action="{{ route('login') }}" method="post" class="col-10 col-md-8 col-lg-6 col-xl-4">
-                <div class="h2 fw-bold text-center mb-5">{{ __("app.login") }}</div>
+            <form action="{{ route('admin.login') }}" method="post" class="col-10 col-md-8 col-lg-6 col-xl-4">
                 @csrf
                 <div class="w-100">
                     <label for="username" class="h6 form-label">{{ __("app.username") }}: </label>
@@ -27,6 +26,7 @@
                             {{ $message }}
                         </div>
                     @enderror
+
                 </div>
 
                 <div class="w-100 mt-3">

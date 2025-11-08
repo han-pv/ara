@@ -57,7 +57,7 @@ class PostController extends Controller
         Post::create([
             'user_id' => $user,
             'content' => $request->text,
-            'image_path' => $imagePath ? $imagePath : null,
+            'image_path' => isset($imagePath) ? $imagePath : null,
             'view_count' => 0,
         ]);
 

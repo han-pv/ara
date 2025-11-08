@@ -27,7 +27,7 @@
                 @yield('content')
             </div>
 
-            <div class="col-lg-3 right-sidebar">
+            <div class="col-lg-2 right-sidebar">
                 <!--     -->
             </div>
         </div>
