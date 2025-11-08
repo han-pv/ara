@@ -26,4 +26,15 @@ class ProfileController extends Controller
             'user' => $user, 'profile' => $myProfile, 'myPosts' => $myPosts,
         ]);
     }
+
+    public function edit()
+    {
+        $user = User::where('id', Auth::user()->id)->first();
+
+        $myProfile = Profile::where('user_id', $user->id)->first();
+
+        return view('client.profile.edit')->with([
+            'user' => $user, 'profile' => $myProfile,
+        ]);
+    }   
 }
