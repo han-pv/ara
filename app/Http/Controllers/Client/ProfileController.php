@@ -23,9 +23,7 @@ class ProfileController extends Controller
 
 
         return view('client.profile.show')->with([
-            'user' => $user,
-            'profile' => $myProfile,
-            'myPosts' => $myPosts,
+            'user' => $user, 'profile' => $myProfile, 'myPosts' => $myPosts,
         ]);
     }
 }
