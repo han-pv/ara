@@ -51,6 +51,8 @@ Route::middleware('auth')
         ->name('profile.')
         ->group(function() {
             Route::get('', 'show')->name('show');
+            Route::get('{id}/edit', 'edit')->name('edit')->where(['id' => '[0-9]+']);
+            Route::put('{id}', 'update')->name('update')->where('id', '[0-9]+');
         });
 
         Route::post('/like/{postId}', [LikeController::class, 'toggle'])->name('post.like');
