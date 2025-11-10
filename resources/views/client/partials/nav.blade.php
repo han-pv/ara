@@ -13,7 +13,16 @@
                 <span class="notification-badge">5</span>
             </div>
             <i class="bi bi-chat-dots nav-icon"></i>
-            <img src="{{ asset('img/avatar.jpg') }}" alt="Profile" class="profile-avatar">
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                    <img src="{{ asset('storage/' . $profile->avatar) }}" alt="Profile" class="profile-avatar ">
+
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    @method('put')
+                    <li><a class="dropdown-item" href="{{ route('profile.edit', auth()->id()) }}">Edit Profile<i class="bi bi-pencil ms-2"></i></a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </nav>

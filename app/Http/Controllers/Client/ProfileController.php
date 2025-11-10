@@ -28,4 +28,34 @@ class ProfileController extends Controller
             'myPosts' => $myPosts,
         ]);
     }
+
+    public function edit($id)
+    {
+        $user = Profile::where('user_id', $id)->firstOrFail();
+
+        return view('client.profile.edit')->with([
+            'user' => $user
+        ]);
+    }
+
+    public function update(Request $request,$id)
+    {
+        $request->validate([
+            'text' => ['nullable', 'string'],
+            'image' => ['nullable', 'mimes:jpg,png,jpeg', 'max:2048'],
+        ]);
+
+        if ($request->hasFile('image')) {
+            $avatar = $request->file('image')->store('users', 'public');
+        }
+
+        $user = Profile::where('user_id', $id)->firstOrFail();
+        $user->bio = $request->text ?? $user->bio ;
+        $user->avatar = $avatar ?? $user->avatar ;
+        $user->save();
+
+        return to_route('profile.show')->with([
+            'success' => 'Profiliniz ustunlikli uytgedildi'
+        ]);
+    }
 }

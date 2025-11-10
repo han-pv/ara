@@ -6,13 +6,19 @@
         <i class="bi bi-arrow-left"></i>
     </a>
     <div class="user-profile-card">
-        <div class="profile-cover"></div>
+        <div class="profile-cover">
+           <div class="text-end p-2">
+             <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-sm btn-outline- "><i
+                        class="bi bi-pencil"></i></a>
+           </div>
+        </div>
         <div class="profile-info">
-            <img src="{{ asset('img/avatar.jpg') }}" alt="Profile" class="profile-photo">
+            <img src="{{ asset('storage/' . $profile->avatar) }}" alt="Profile" class="profile-photo">
             <h5 class="profile-name">{{ $user->name . " " . $user->surname  }}</h5>
             <p class="profile-username"><span>@</span>{{  $user->username }}</p>
-            <div class="bio mt-3">
+            <div class="bio mt-3 text-center">
                 <div class="">{{ $profile->bio }}</div>
+                
             </div>
             <div class="profile-stats">
                 <div class="stat-item">
@@ -48,3 +54,6 @@
 
     </div>
 @endsection
+
+
+
