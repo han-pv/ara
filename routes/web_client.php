@@ -1,4 +1,5 @@
 <?php
+use App\Http\Middleware\IsBlockedMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\LikeController;
@@ -9,7 +10,7 @@ use App\Http\Controllers\Client\FollowController;
 use App\Http\Controllers\Client\ProfileController;
 use App\Http\Controllers\Client\RegisterController;
 
-Route::get('/',  [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('locale/{locale}', [HomeController::class, 'locale'])->name('locale')->where('locale', '[a-z]+');
 
@@ -29,6 +30,7 @@ Route::middleware('auth')
     });
 
 Route::middleware('auth')
+    ->middleware(IsBlockedMiddleware::class)
     ->group(function () {
         Route::controller(PostController::class)
             ->prefix('posts')
@@ -46,13 +48,13 @@ Route::middleware('auth')
             });
 
         Route::controller(ProfileController::class)
-        ->prefix('profile')
-        ->name('profile.')
-        ->group(function() {
-            Route::get('', 'show')->name('show');
-            Route::get('{id}/edit', 'edit')->name('edit')->where(['id' => '[0-9]+']);
-            Route::put('{id}', 'update')->name('update')->where('id', '[0-9]+');
-        });
+            ->prefix('profile')
+            ->name('profile.')
+            ->group(function () {
+                Route::get('', 'show')->name('show');
+                Route::get('{id}/edit', 'edit')->name('edit')->where(['id' => '[0-9]+']);
+                Route::put('{id}', 'update')->name('update')->where('id', '[0-9]+');
+            });
 
         Route::post('/like/{postId}', [LikeController::class, 'toggle'])->name('post.like');
         Route::post('/follow/{userId}', [FollowController::class, 'toggle'])->name('follow');
