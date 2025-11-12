@@ -7,6 +7,7 @@
     <title>ARA</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset("./css/style.css") }}">
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
     <style>
         #wrapper {
@@ -27,11 +28,6 @@
             opacity: 0;
             margin-right: -150px;
         }
-
-        .activated #oz {
-            opacity: 1;
-            margin-right: 20px;
-        }
     </style>
 
 </head>
@@ -46,12 +42,13 @@
 
             <div class="h1 fw-bold">
                 <div id="wrapper">
-                    <span id="oz" class="text-success">ÖZ </span>
+                    <span id="oz" style="color: var(--primary-color);">ÖZ </span>
                     <span id="ara">ARA</span>
                 </div>
             </div>
-            <a href="{{ route('login') }}" class="btn btn-dark">{{ __('app.login') }} <i class="bi-box-arrow-in-right"></i> </a>
-            <a href="{{ route('register') }}" class="btn btn-outline-success ms-2">{{ __("app.registerNow") }} <i
+            <a href="{{ route('login') }}" class="btn btn-dark">{{ __('app.login') }} <i
+                    class="bi-box-arrow-in-right"></i> </a>
+            <a href="{{ route('register') }}" class="btn btn-custom ms-2">{{ __("app.registerNow") }} <i
                     class="bi-person-plus"></i></a>
         </div>
         <script>

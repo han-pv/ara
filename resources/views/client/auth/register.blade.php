@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset("./css/style.css") }}">
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 </head>
 
@@ -20,7 +21,8 @@
                 <div class="h2 fw-bold text-center mb-5">{{ __('app.register') }}</div>
                 @csrf
                 <div class="w-100  mt-3">
-                    <label for="name" class="h6 form-label">{{ __("app.name") }}<span class="text-danger">*</span> </label>
+                    <label for="name" class="h6 form-label">{{ __("app.name") }}<span class="text-danger">*</span>
+                    </label>
                     <input type="text" class="form-control @error("name") border-danger @enderror" name="name" id="name"
                         value="{{ old('name') }}">
                     @error('name')
@@ -41,7 +43,8 @@
                 </div>
 
                 <div class="w-100 mt-3">
-                    <label for="username" class="h6 form-label">{{ __("app.username") }}<span class="text-danger">*</span> </label>
+                    <label for="username" class="h6 form-label">{{ __("app.username") }}<span
+                            class="text-danger">*</span> </label>
                     <input type="text" class="form-control @error("username") border-danger @enderror" name="username"
                         id="username" value="{{ old('username') }}">
 
@@ -53,7 +56,8 @@
                 </div>
 
                 <div class="w-100 mt-3">
-                    <label for="password" class="h6 form-label">{{ __("app.password") }}<span class="text-danger">*</span> </label>
+                    <label for="password" class="h6 form-label">{{ __("app.password") }}<span
+                            class="text-danger">*</span> </label>
                     <input type="password" id="password @error("password") border-danger @enderror" name="password"
                         class="form-control">
                     @error('password')
@@ -75,7 +79,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-success w-100 mt-4">{{ __("app.submit") }}</button>
+                <button type="submit" class="btn btn-custom w-100 mt-4">{{ __("app.submit") }}</button>
             </form>
         </div>
     </div>

@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap-icons.min.css') }}">
+    <link rel="stylesheet" href="{{ asset("./css/style.css") }}">
     <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
 </head>
 
@@ -34,7 +35,7 @@
                     <input type="password" id="password" name="password" class="form-control">
                 </div>
 
-                <button type="submit" class="btn btn-success w-100 mt-4">{{ __("app.submit") }}</button>
+                <button type="submit" class="btn btn-custom w-100 mt-4">{{ __("app.submit") }}</button>
             </form>
         </div>
     </div>
