@@ -1,10 +1,10 @@
 <div class="sidebar-menu">
-    <a href="#" class="menu-item">
-        <i class="bi bi-house-door-fill"></i>
+    <a href="{{ route('posts.index') }}" class="menu-item">
+        <i class="bi bi-house-door"></i>
         <span>{{ __('app.home') }}</span>
     </a>
     <a href="{{ route('profile.show') }}" class="menu-item">
-        <i class="bi bi-house-door-fill"></i>
+        <i class="bi bi-person"></i>
         <span>{{ __('app.myProfile') }}</span>
     </a>
     <a href="{{ route('users.index') }}" class="menu-item">

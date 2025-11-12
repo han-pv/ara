@@ -7,10 +7,11 @@
     </a>
     <div class="user-profile-card">
         <div class="profile-cover">
-           <div class="text-end p-2">
-             <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-sm btn-outline- "><i
-                        class="bi bi-pencil"></i></a>
-           </div>
+            <div class="text-end p-2">
+                <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-sm btn-outline-light ">
+                    <i class="bi bi-pencil"></i>
+                </a>
+            </div>
         </div>
         <div class="profile-info">
             <img src="{{ asset('storage/' . $profile->avatar) }}" alt="Profile" class="profile-photo">
@@ -18,7 +19,6 @@
             <p class="profile-username"><span>@</span>{{  $user->username }}</p>
             <div class="bio mt-3 text-center">
                 <div class="">{{ $profile->bio }}</div>
-                
             </div>
             <div class="profile-stats">
                 <div class="stat-item">
@@ -40,7 +40,6 @@
     <div>
         @forelse($myPosts as $post)
             @include('client.partials.post-card')
-
         @empty
             <div class="text-center">
                 <div class="display-2 mb-3">
@@ -51,9 +50,5 @@
                 </a>
             </div>
         @endforelse
-
     </div>
 @endsection
-
-
-

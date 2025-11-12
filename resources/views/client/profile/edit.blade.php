@@ -9,7 +9,6 @@
     {{ __('app.editProfile') }}
 </div>
 
-
 <form action="{{ route('profile.update', $user->id) }}" method="post" enctype="multipart/form-data">
     @csrf
     @method('put')
