@@ -28,8 +28,12 @@
             opacity: 0;
             margin-right: -150px;
         }
-    </style>
 
+        .activated #oz {
+            opacity: 1;
+            margin-right: 20px;
+        }
+    </style>
 </head>
 
 <body>
@@ -38,6 +42,7 @@
             <a href="{{ route('locale', 'tm') }}" class="btn btn-sm btn-outline-dark">TM</a>
             <a href="{{ route('locale', 'ru') }}" class="btn btn-sm btn-outline-dark">RU</a>
             <a href="{{ route('locale', 'en') }}" class="btn btn-sm btn-outline-dark">EN</a>
+
             <div class="h1 my-4">{{ __('app.welcome') }}</div>
 
             <div class="h1 fw-bold">
@@ -46,27 +51,32 @@
                     <span id="ara">ARA</span>
                 </div>
             </div>
-            <a href="{{ route('login') }}" class="btn btn-dark">{{ __('app.login') }} <i
-                    class="bi-box-arrow-in-right"></i> </a>
-            <a href="{{ route('register') }}" class="btn btn-custom ms-2">{{ __("app.registerNow") }} <i
-                    class="bi-person-plus"></i></a>
+
+            <a href="{{ route('login') }}" class="btn btn-dark">
+                {{ __('app.login') }}
+                <i class="bi-box-arrow-in-right"></i>
+            </a>
+            <a href="{{ route('register') }}" class="btn btn-custom ms-2">
+                {{ __("app.registerNow") }}
+                <i class="bi-person-plus"></i>
+            </a>
         </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const wrapper = document.getElementById('wrapper');
-                const ozElement = document.getElementById('oz');
-
-                setTimeout(() => {
-                    wrapper.classList.add('activated');
-                }, 2000)
-
-                setInterval(() => {
-                    wrapper.classList.toggle('activated');
-                }, 9000);
-            });
-        </script>
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const wrapper = document.getElementById('wrapper');
+            const ozElement = document.getElementById('oz');
+
+            setTimeout(() => {
+                wrapper.classList.add('activated');
+            }, 2000)
+
+            setInterval(() => {
+                wrapper.classList.toggle('activated');
+            }, 9000);
+        });
+    </script>
 </body>
 
 </html>

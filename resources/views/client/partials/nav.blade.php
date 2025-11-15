@@ -13,7 +13,7 @@
             </div>
             <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                    <img src="{{ asset('storage/' . $profile->avatar) }}" alt="Profile" class="profile-avatar ">
+                    <img src="{{ asset($profile->avatar ? 'storage/' . $profile->avatar : "img/avatar.jpg") }}" alt="Profile" class="profile-avatar ">
 
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

@@ -71,4 +71,9 @@ class User extends Authenticatable
     {
         return $this->following()->where('follower_id', $user->id)->exists();
     }
+
+    public function getFullName(): string
+    {
+        return $this->name . " " . $this->surname;
+    }
 }

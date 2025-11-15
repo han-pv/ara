@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -31,8 +32,14 @@ class PostController extends Controller
 
         $post = Post::where('id', $id)->firstOrFail();
 
+        $comments = Comment::where('post_id', $id)
+            ->whereNull('parent_id')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         return view('client.posts.show')->with([
-            'post' => $post
+            'post' => $post,
+            'comments' => $comments,
         ]);
     }
 

@@ -1,7 +1,7 @@
 <div class="post-card">
     <div class="post-header">
         <div class="post-user">
-            <img src="{{ asset('storage/' . $profile->avatar) }}" alt="User">
+            <img src="{{ asset($post->user->avatar ? 'storage/' . $profile->avatar : "img/avatar.jpg") }}" alt="User">
             <div class="post-user-info">
                 <h6>{{ $post->user->username }}</h6>
                 <small>{{ $post->created_at->diffForHumans() }}</small>

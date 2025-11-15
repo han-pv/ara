@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\Client\CommentController;
 use App\Http\Middleware\IsBlockedMiddleware;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Client\HomeController;
@@ -45,6 +47,14 @@ Route::middleware('auth')
                 Route::get('', 'index')->name('index');
                 Route::get('/{id}', 'show')->name('show')->where('id', '[0-9]+');
                 Route::get('/{id}/like', 'like')->name('like')->where('id', '[0-9]+');
+            });
+
+        Route::controller(CommentController::class)
+            ->prefix('comments')
+            ->name('comments.')
+            ->group(function () {
+                Route::post('/{postId}', 'store')->name('store');
+                Route::delete('{commentId}', 'destroy')->name('destroy');
             });
 
         Route::controller(ProfileController::class)
