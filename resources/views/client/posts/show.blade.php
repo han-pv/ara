@@ -1,10 +1,10 @@
 @extends('client.layouts.app')
 
 @section('content')
-
-    <a href="{{ route('posts.index') }}" class="h2">
-        <i class="bi bi-arrow-left"></i>
+    <a onclick="window.history.back()" class="h2" style="cursor: pointer;">
+        <i class="bi bi-arrow-left h2"></i>
     </a>
+
     @include('client.partials.post-card')
     <div>
         <form action="{{ route('comments.store', $post->id) }}" method="post">

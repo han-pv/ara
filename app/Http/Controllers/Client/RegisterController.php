@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Client;
 
 use App\Models\User;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
@@ -31,6 +32,10 @@ class RegisterController extends Controller
             'surname' => $request->surname ?? null,
             'username' => $request->username,
             'password' => Hash::make($request->password),
+        ]);
+
+        Profile::create([
+            'user_id' => $user->id
         ]);
 
         Auth::login($user);

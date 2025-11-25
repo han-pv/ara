@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="profile-info">
-            <img src="{{ asset('storage/' . $profile->avatar) }}" alt="Profile" class="profile-photo">
+            <img src="{{ asset($profile->avatar  ? 'storage/' . $profile->avatar : 'img/avatar.jpg') }}" alt="Profile" class="profile-photo">
             <h5 class="profile-name">{{ $user->name . " " . $user->surname  }}</h5>
             <p class="profile-username"><span>@</span>{{  $user->username }}</p>
             <div class="bio mt-3 text-center">

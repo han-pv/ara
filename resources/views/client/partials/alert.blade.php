@@ -1,39 +1,45 @@
-@if(session('success'))
-    <div class="position-absolute end-0 m-3" style="z-index: 999;">
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <i class="bi-check-circle-fill"></i> {!! session('success') !!}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    </div>
-@elseif(isset($success))
-    <div class="position-absolute end-0 m-3" style="z-index: 999;">
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <i class="bi-check-circle-fill"></i> {!! $success !!}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    </div>
-@endif
-@if(session('error'))
-    <div class="position-absolute end-0 m-3" style="z-index: 999;">
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <i class="bi-x-circle-fill"></i> {!! session('error') !!}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    </div>
-@elseif(isset($error))
-    <div class="position-absolute end-0 m-3" style="z-index: 999;">
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            <i class="bi-x-circle-fill"></i> {!! $error !!}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    </div>
-@elseif($errors->any())
-    <div class="position-absolute end-0 m-3" style="z-index: 999;">
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            @foreach($errors->all() as $error)
-                <div><i class="bi-x-circle-fill"></i> {{ $error }}</div>
-            @endforeach
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    </div>
-@endif
+<script>
+    @if(session('success'))
+        $.toast({
+            title: "Success",
+            message: "{!! session('success') !!}",
+            type: "success",
+            duration: 5000,
+        });
+    @elseif(isset($success))
+        $.toast({
+            title: "Success",
+            message: "{!! $success !!}",
+            type: "success",
+            duration: 5000,
+        });
+    @endif
+
+    @if(session('error'))
+        $.toast({
+            title: "Error",
+            message: "{!! session('error') !!}",
+            type: "error",
+            duration: 3000,
+        });
+    @elseif(isset($error))
+        $.toast({
+            title: "Error",
+            message: "{!! $error !!}",
+            type: "error",
+            duration: 3000,
+        });
+    @elseif($errors->any())
+        var errorMessage = '';
+        @foreach($errors->all() as $error)
+            errorMessage += '<div>{{ $error }}</div>';
+        @endforeach
+
+        $.toast({
+            title: "Validation Error",
+            message: errorMessage,
+            type: "error",
+            duration: 5000,
+        });
+    @endif
+</script>

@@ -12,7 +12,7 @@ class LikeController extends Controller
     public function toggle($postId)
     {
         $liked = false;
-        $user = Auth::user(); // men id = 11 // 51
+        $user = Auth::user();
         $like = Like::where('post_id', $postId)
             ->where('user_id', $user->id)
             ->first();
@@ -26,15 +26,20 @@ class LikeController extends Controller
             ]);
             $liked = true;
         }
+        
+        // if ($liked) {
 
-        if ($liked) {
+        //     return redirect()->back()->with([
+        //         'success' => 'Like added',
+        //     ]);
+        // }
+        // return redirect()->back()->with([
+        //     'error' => 'Like removed',
+        // ]);
 
-            return redirect()->back()->with([
-                'success' => 'like basyldy',
-            ]);
-        }
-        return redirect()->back()->with([
-            'error' => 'like ayryldy',
+        return response()->json([
+            'liked' => $liked,
+            'message' => $liked ? 'Like added' : 'Like removed',
         ]);
     }
 }

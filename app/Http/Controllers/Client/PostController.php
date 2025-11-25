@@ -14,23 +14,20 @@ class PostController extends Controller
 {
     public function index()
     {
-
-        //User AppServiceProviders icinden gelya
-        $posts = Post::withCount('likes')
+        $posts = Post::withCount('likes', 'comments')
             ->orderBy('created_at', 'desc')
-            ->take(10)
-            ->get();
+            ->paginate(10);
 
         return view('client.posts.index')->with([
             'posts' => $posts,
         ]);
-
     }
 
     public function show($id)
     {
-
-        $post = Post::where('id', $id)->firstOrFail();
+        $post = Post::where('id', $id)
+            ->withCount('likes')
+            ->firstOrFail();
 
         $comments = Comment::where('post_id', $id)
             ->whereNull('parent_id')
@@ -78,7 +75,6 @@ class PostController extends Controller
             'success' => 'Postunyz ustunlikli doredildi'
         ]);
     }
-
 
     public function edit($id)
     {
