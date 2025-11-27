@@ -8,13 +8,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('admin.users.index') }}"><i class="bi bi-people"></i> Users</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('admin.users.index') }}">
+                        <i class="bi bi-people"></i> Users
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#"><i class="bi bi-file-post"></i> Posts</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('admin.posts.index') }}">
+                        <i class="bi bi-file-post"></i> Posts
+                    </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#"><i class="bi bi-images"></i> Banners</a>
+                    <a class="nav-link" aria-current="page" href="#">
+                        <i class="bi bi-images"></i> Comments
+                    </a>
                 </li>
             </ul>
             <form action="{{ route('admin.logout') }}" method="post">

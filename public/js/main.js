@@ -47,12 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
                             btnEl.setAttribute('data-liked', '0');
                             btnEl.querySelector('i').className = 'bi bi-heart';
                         }
-                        $.toast({
-                            title: data.liked ? 'Success' : 'Info',
-                            message: data.message,
-                            type: data.liked ? 'success' : 'info',
-                            duration: 3000
-                        });
                     } else {
                         $.toast({
                             title: 'Error',

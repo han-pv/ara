@@ -51,5 +51,5 @@ return [
     "image" => "Image",
     "follow" => "Follow",
     "notFoundPost" => "Post Not Found",
-    "addPost" => "Add new post"
+    "addPost" => "Add new post",
 ];

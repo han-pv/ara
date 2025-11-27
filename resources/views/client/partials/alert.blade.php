@@ -1,14 +1,12 @@
 <script>
     @if(session('success'))
         $.toast({
-            title: "Success",
             message: "{!! session('success') !!}",
             type: "success",
             duration: 5000,
         });
     @elseif(isset($success))
         $.toast({
-            title: "Success",
             message: "{!! $success !!}",
             type: "success",
             duration: 5000,
@@ -17,14 +15,12 @@
 
     @if(session('error'))
         $.toast({
-            title: "Error",
             message: "{!! session('error') !!}",
             type: "error",
             duration: 3000,
         });
     @elseif(isset($error))
         $.toast({
-            title: "Error",
             message: "{!! $error !!}",
             type: "error",
             duration: 3000,

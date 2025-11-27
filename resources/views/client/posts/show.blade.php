@@ -1,66 +1,109 @@
 @extends('client.layouts.app')
 
 @section('content')
-    <a onclick="window.history.back()" class="h2" style="cursor: pointer;">
-        <i class="bi bi-arrow-left h2"></i>
+    <a href="{{ route('posts.index') }}" class="h2 mb-4 d-inline-block">
+        <i class="bi bi-arrow-left"></i>
     </a>
 
     @include('client.partials.post-card')
-    <div>
+
+    <div class="create-comment">
         <form action="{{ route('comments.store', $post->id) }}" method="post">
             @csrf
-            <div class="row">
-                <div class="col-10">
-                    <input type="text" name="text" class="form-control">
+            <div class="d-flex gap-3 align-items-center">
+                <div class="flex-fill">
+                    <input type="text" name="text" class="comment-input" placeholder="Write a comment..." required>
                 </div>
-                <div class="col-2">
-                    <button type="submit" class="btn btn-primary">Sumbit</button>
-                </div>
+                <button type="submit" class="btn-custom">Send</button>
             </div>
         </form>
     </div>
-    @foreach ($comments as $comment)
-        <div class="border border-1 rounded-3 shadow-sm my-3 p-3 w-100">
-            <div>
-                <div class="d-flex h6 fw-bold">
-                    {{ $comment->user->name . ' ' . $comment->user->surname }}
-                </div>
-                <i class="bi-chat-dots"></i>
-                {{ $comment->comment }}
-                <br>
-                <button class="btn btn-outline-light text-secondary btn-sm my-1">{{ __('app.reply') }}</button>
-                @if (count($comment->children) > 0)
-                    <button onclick="showSubcomment(this);" class=" btn btn-outline-light text-secondary btn-sm my-1">Show</button>
-                    <div id="subcomment" class="d-none">
-                        @foreach ($comment->children as $child)
-                            <div class="border-top mx-3 ps-5 py-3">
-                                <div class="h6 fw-bold my-2"><span></span> {{ $child->user->getFullName() }} ->
-                                    {{  $comment->user->getFullName() }}
-                                </div>
-                                <i class="bi-chat-dots"></i> {{ $child->comment }}
 
-                            </div>
-                        @endforeach
+    @foreach ($comments as $comment)
+        <div class="comment-card">
+            <div class="d-flex gap-3 position-relative">
+                <img src="{{ asset($comment->user->avatar ? 'storage/' . $comment->user->avatar : "img/avatar.jpg") }}"
+                    class="comment-avatar" alt="{{ $comment->user->getFullName() }}">
+
+                @if ($comment->user->id == auth()->id())
+                    <div class="position-absolute top-0 end-0 m-2">
+                        <form action="{{ route('comments.destroy', $comment->id) }}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="me-2 btn btn-sm btn-outline-danger">
+                                <span class="bi bi-trash"></span>
+                            </button>
+                        </form>
                     </div>
                 @endif
+
+                <div class="flex-fill">
+                    <div class="fw-bold mb-1">{{ $comment->user->getFullName() }}</div>
+                    <div class="comment-text mb-3">{{ $comment->comment }}</div>
+
+                    <details class="reply-section">
+                        <summary class="reply-toggle-btn">Reply</summary>
+                        <div class="mt-3">
+                            <form action="{{ route('comments.store', $post->id) }}" method="post">
+                                @csrf
+                                <input type="hidden" name="commentId" value="{{ $comment->id }}">
+                                <div class="d-flex gap-3 align-items-center">
+                                    <input type="text" name="text" class="comment-input" placeholder="Write a reply..."
+                                        required>
+                                    <button type="submit" class="btn-custom">Send</button>
+                                </div>
+                            </form>
+                        </div>
+                    </details>
+
+                    @if ($comment->children->count() > 0)
+                        <button onclick="showSubcomment(this)" class="subcomment-toggle-btn mt-2"
+                            data-count="{{ $comment->children->count() }}">
+                            Show {{ $comment->children->count() }} replies
+                        </button>
+
+                        <div class="subcomments-container d-none">
+                            @foreach ($comment->children as $child)
+                                <div class="subcomment-item">
+                                    <div class="d-flex gap-3 position-relative">
+                                        <img src="{{ asset($child->user->avatar ? 'storage/' . $child->user->avatar : "img/avatar.jpg") }}"
+                                            class="comment-avatar-sm" alt="{{ $child->user->getFullName() }}">
+
+                                        @if ($comment->user->id == auth()->id())
+                                            <div class="position-absolute top-0 end-0 m-2">
+                                                <form action="{{ route('comments.destroy', $comment->id) }}" method="post">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="submit" class="me-2 btn btn-sm btn-outline-danger">
+                                                        <span class="bi bi-trash"></span>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        @endif
+                                        <div>
+                                            <div class="fw-bold text-primary small">
+                                                {{ $child->user->getFullName() }}
+                                                <span class="text-muted">→ {{ $comment->user->getFullName() }}</span>
+                                            </div>
+                                            <div class="comment-text small">{{ $child->comment }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
     @endforeach
+
     <script>
         function showSubcomment(btn) {
-            let subcomment = btn.nextElementSibling;
-            subcomment.classList.toggle('d-none');
-
-            let btnText = btn.textContent;
-            if (btnText == "Show") {
-                btn.textContent = "Hide"
-            } else {
-                btn.textContent = "Show"
-            }
+            const container = btn.nextElementSibling;
+            container.classList.toggle('d-none');
+            btn.textContent = container.classList.contains('d-none')
+                ? `Show ${btn.dataset.count} replies`
+                : 'Hide replies';
         }
-        function addSubcomment() {
-            //
-        }
-
     </script>
 @endsection

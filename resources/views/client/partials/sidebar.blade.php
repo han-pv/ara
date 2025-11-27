@@ -11,23 +11,7 @@
         <i class="bi bi-people"></i>
         <span>{{ __('app.users') }}</span>
     </a>
-    <a href="#" class="menu-item">
-        <i class="bi bi-people"></i>
-        <span>{{ __('app.friends') }}</span>
-    </a>
-    <!-- <a href="#" class="menu-item">
-        <i class="bi bi-bookmark"></i>
-        <span>{{ __('app.saved') }}</span>
-    </a>
-    <a href="#" class="menu-item">
-        <i class="bi bi-images"></i>
-        <span>{{ __('app.gallery') }}</span>
-    </a>
-    <a href="#" class="menu-item">
-        <i class="bi bi-calendar-event"></i>
-        <span>{{ __('app.events') }}</span>
-    </a> -->
-    <a href="#" class="menu-item">
+    <a href="{{ route('settings') }}" class="menu-item">
         <i class="bi bi-gear"></i>
         <span>{{ __('app.settings') }}</span>
     </a>

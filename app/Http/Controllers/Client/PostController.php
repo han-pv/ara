@@ -26,7 +26,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::where('id', $id)
-            ->withCount('likes')
+            ->withCount('likes', 'comments')
             ->firstOrFail();
 
         $comments = Comment::where('post_id', $id)
@@ -110,7 +110,7 @@ class PostController extends Controller
 
         $post->delete();
 
-        return to_route('posts.index')->with([
+        return redirect()->back()->with([
             'success' => "Post ustunlikli pozludy"
         ]);
     }

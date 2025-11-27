@@ -4,4 +4,6 @@ return [
     "category" => "Kategoriýa",
     "login" => "Giriş",
     "registerNow" => "Agza bol",
+    "settings" => "Sazlamalar",
+    
 ];

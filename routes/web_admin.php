@@ -25,15 +25,20 @@ Route::prefix('admin')
             ->group(function () {
                 Route::get('', [DashboardController::class, 'index'])->name('dashboard.index');
 
-                Route::controller(UserController::class)->group(function () {
-                    Route::get('users', 'index')->name('users.index');
-                    Route::get('users/{userId}', 'show')->name('users.show');
-                    Route::post('users/{userId}/block', 'block')->name('users.block');
-                });
+                Route::controller(UserController::class)
+                    ->prefix('users')
+                    ->name('users.')
+                    ->group(function () {
+                        Route::get('', 'index')->name('index');
+                        Route::post('/{userId}/block', 'block')->name('block');
+                    });
 
-                Route::controller(PostController::class)->group(function () {
-                    Route::get('posts', 'index')->name('posts.index');
-                    Route::delete('posts/{postId}', 'destroy')->name('posts.destroy');
-                });
+                Route::controller(PostController::class)
+                    ->prefix('posts')
+                    ->name('posts.')
+                    ->group(function () {
+                        Route::get('', 'index')->name('index');
+                        Route::delete('/{postId}', 'destroy')->name('destroy');
+                    });
             });
     });

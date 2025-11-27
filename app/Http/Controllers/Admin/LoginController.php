@@ -25,7 +25,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             return redirect()->route('admin.dashboard.index')->with([
-                'success' => "Ustunlikli giris edildi"
+                'success' => "Login was successful",
             ]);
         }
 
@@ -44,7 +44,7 @@ class LoginController extends Controller
 
         return redirect()->route('home')
             ->with([
-                'success' => 'Ustunlikli cykys edildi',
+                'success' => 'Logout was successful',
             ]);
     }
 }

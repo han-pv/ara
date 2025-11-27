@@ -9,8 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class LoginController extends Controller
 {
     public function create()
-    {
-        
+    { 
         return view('client.auth.login');
     }
 

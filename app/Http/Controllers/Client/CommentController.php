@@ -13,7 +13,7 @@ class CommentController extends Controller
     public function store(Request $request, $postId)
     {
         $request->validate([
-            'parentId' => ["nullable", "integer", "min:1"],
+            'commentId' => ["nullable", "integer", "min:1"],
             'text' => ["nullable", "string", "min:1"],
         ]);
 
@@ -23,7 +23,7 @@ class CommentController extends Controller
         Comment::create([
             'user_id' => $userId,
             'post_id' => $post->id,
-            'parent_id' => $request->parentId ? $request->parentId : null,
+            'parent_id' => $request->commentId ? $request->commentId : null,
             'comment' => $request->text
         ]);
 
@@ -34,6 +34,11 @@ class CommentController extends Controller
 
     public function destroy($commentId)
     {
-        //
+        $comment = Comment::where('id', $commentId)->firstOrFail();
+        $comment->delete();
+
+        return redirect()->back()->with([
+            "success" => "Comment pozuldy"
+        ]);
     }
 }

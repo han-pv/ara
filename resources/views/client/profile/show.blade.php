@@ -45,7 +45,7 @@
                 <div class="display-2 mb-3">
                     {{ __('app.notFoundPost') }} :(
                 </div>
-                <a href="{{ route('posts.create') }}" class="btn btn-primary">
+                <a href="{{ route('posts.create') }}" class="btn-custom">
                     + {{ __('app.addPost') }}
                 </a>
             </div>

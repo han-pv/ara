@@ -12,12 +12,14 @@
                 <form action="{{ route('posts.destroy', $post->id) }}" method="post">
                     @csrf
                     @method('delete')
-                    <button type="submit" class="me-2 btn btn-sm btn-outline-danger"><span class="bi bi-trash"></span></button>
+                    <button type="submit" class="me-2 btn btn-sm btn-outline-danger">
+                        <span class="bi bi-trash"></span>
+                    </button>
                 </form>
-                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-outline-warning"><i
-                        class="bi bi-pencil"></i></a>
+                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-outline-warning">
+                    <i class="bi bi-pencil"></i>
+                </a>
             </div>
-
         @endif
     </div>
     <a href="{{ route('posts.show', [$post->id]) }}" class="text-decoration-none text-dark">
@@ -41,10 +43,10 @@
             <i class="bi bi-heart{{ $post->LikedBy(auth()->user()) ? '-fill' : '' }}"></i>
             <span class="like-count" id="like-count-{{ $post->id }}">{{ $post->likes_count }}</span>
         </button>
-        <button class="interaction-btn">
+        <a href="{{ route('posts.show', [$post->id]) }}" class="interaction-btn text-decoration-none">
             <i class="bi bi-chat"></i>
             <span>{{ $post->comments_count }}</span>
-        </button>
+        </a>
         <button class="interaction-btn ms-auto">
             <i class="bi bi-bookmark"></i>
         </button>

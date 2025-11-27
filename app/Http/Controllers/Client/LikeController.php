@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Client;
 
 use App\Models\Like;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,16 +25,6 @@ class LikeController extends Controller
             ]);
             $liked = true;
         }
-        
-        // if ($liked) {
-
-        //     return redirect()->back()->with([
-        //         'success' => 'Like added',
-        //     ]);
-        // }
-        // return redirect()->back()->with([
-        //     'error' => 'Like removed',
-        // ]);
 
         return response()->json([
             'liked' => $liked,

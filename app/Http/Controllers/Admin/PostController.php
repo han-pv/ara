@@ -13,7 +13,8 @@ class PostController extends Controller
     {
         $posts = Post::withCount('likes')
             ->orderBy('created_at', 'desc')
-            ->paginate(10);
+            ->paginate(15)
+            ->withQueryString();
 
         return view('admin.posts.index')->with([
             'posts' => $posts
@@ -31,7 +32,7 @@ class PostController extends Controller
         $post->delete();
 
         return to_route('admin.posts.index')->with([
-            'success' => 'Post ustunlikli yok edlidi'
+            'success' => 'Post deleted successfully.'
         ]);
     }
 }

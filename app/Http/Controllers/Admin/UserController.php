@@ -31,7 +31,7 @@ class UserController extends Controller
         $user->save();
 
         return redirect()->back()->with([
-            'success' =>  $user->is_blocked ? 'User üstünlikli blok edildi' : 'User üstünlikli blokdan açyldy'
+            'success' =>  $user->is_blocked ? 'User blocked successfully' : 'User unblocked successfully',
         ]);
     }
 }

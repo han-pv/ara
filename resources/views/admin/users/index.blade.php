@@ -6,7 +6,7 @@
         <div>
         </div>
 
-        <table class="table">
+        <table class="table table-hover table-striped table-bordered ">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -22,7 +22,7 @@
             <tbody>
                 @foreach ($users as $user)
                     <tr>
-                        <th scope="row">{{ $loop->iteration }}</th>
+                        <th scope="row">{{ ($users->currentPage() - 1) * $users->perPage() + $loop->iteration }}</th>
                         <td>{{ $user->username }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->surname }}</td>
@@ -39,5 +39,8 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="mt-4">
+            {{ $users->links('pagination::bootstrap-5') }}
+        </div>
     </div>
 @endsection

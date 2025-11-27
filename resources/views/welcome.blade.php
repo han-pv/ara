@@ -52,11 +52,11 @@
                 </div>
             </div>
 
-            <a href="{{ route('login') }}" class="btn btn-dark">
+            <a href="{{ route('login') }}" class="btn btn-custom bg-dark text-light border-1 border-dark">
                 {{ __('app.login') }}
                 <i class="bi-box-arrow-in-right"></i>
             </a>
-            <a href="{{ route('register') }}" class="btn btn-custom ms-2">
+            <a href="{{ route('register') }}" class="btn btn-custom border-1 ms-2">
                 {{ __("app.registerNow") }}
                 <i class="bi-person-plus"></i>
             </a>

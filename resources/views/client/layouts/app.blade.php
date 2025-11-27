@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -14,6 +14,7 @@
     <script src="{{ asset("./js/main.js") }}"></script>
     <script src="{{ asset("./js/jquery.min.js") }}"></script>
     <script src="{{ asset("./js/toast-plugin-min.js") }}"></script>
+    <script src="{{ asset("./js/color-mood.js") }}"></script>
 </head>
 
 <body>

@@ -11,6 +11,7 @@ use App\Http\Controllers\Client\LoginController;
 use App\Http\Controllers\Client\FollowController;
 use App\Http\Controllers\Client\ProfileController;
 use App\Http\Controllers\Client\RegisterController;
+use App\Http\Controllers\Client\SettingsController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -62,7 +63,7 @@ Route::middleware('auth')
             ->name('profile.')
             ->group(function () {
                 Route::get('', 'show')->name('show');
-                Route::get('{id}/edit',  'edit')->name('edit')->where(['id' => '[0-9]+']);
+                Route::get('{id}/edit', 'edit')->name('edit')->where(['id' => '[0-9]+']);
                 Route::put('', 'update')->name('update');
             });
 
@@ -76,4 +77,6 @@ Route::middleware('auth')
                 Route::get('', 'index')->name('index');
                 Route::get('/{id}', 'show')->name('show')->where('id', '[0-9]+');
             });
+
+        Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
     });
