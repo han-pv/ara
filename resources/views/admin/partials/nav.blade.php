@@ -27,8 +27,8 @@
                 @csrf
                 <input type="hidden">
                 <button type="submit" class="btn btn-outline-danger">
-                    <i class="bi bi-box-arrow-left"></i>
-                    <span>{{ __('app.logout') }}</span>
+                    <span>Logout</span>
+                    <i class="bi bi-box-arrow-right ms-2"></i>
                 </button>
             </form>
         </div>

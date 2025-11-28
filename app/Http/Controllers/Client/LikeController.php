@@ -27,8 +27,7 @@ class LikeController extends Controller
         }
 
         return response()->json([
-            'liked' => $liked,
-            'message' => $liked ? 'Like added' : 'Like removed',
+            'liked' => $liked
         ]);
     }
 }

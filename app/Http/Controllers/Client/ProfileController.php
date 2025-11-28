@@ -69,7 +69,7 @@ class ProfileController extends Controller
         $profile->save();
 
         return to_route('profile.show')->with([
-            'success' => 'Profiliniz ustunlikli uytgedildi'
+            'success' => trans('app.profileUpdated')
         ]);
     }
 }

@@ -72,7 +72,7 @@ class PostController extends Controller
         // $post->save();
 
         return to_route('posts.index')->with([
-            'success' => 'Postunyz ustunlikli doredildi'
+            'success' => trans('app.postCreated')
         ]);
     }
 
@@ -96,7 +96,7 @@ class PostController extends Controller
         $post->save();
 
         return to_route('profile.show')->with([
-            'success' => 'Post ustunlikli uytgedildi'
+            'success' => trans('app.postUpdated')
         ]);
     }
 
@@ -111,7 +111,7 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()->back()->with([
-            'success' => "Post ustunlikli pozludy"
+            'success' => trans('app.postDeleted')
         ]);
     }
 }

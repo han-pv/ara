@@ -29,7 +29,7 @@
         </div>
     @empty
         <div class="h1 text-center">
-            User tapylmady
+            {{ __('app.userNotFound') }}
         </div>
     @endforelse
 @endsection

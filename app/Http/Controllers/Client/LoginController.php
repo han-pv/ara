@@ -24,12 +24,12 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             return redirect()->route('posts.index')->with([
-                'success' => "Ustunlikli giris edildi"
+                'success' => trans('app.loginSuccess')
             ]);
         }
 
         return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
+            'username' => trans('app.loginError'),
         ])->onlyInput('username');
     }
 
@@ -43,7 +43,7 @@ class LoginController extends Controller
 
         return redirect()->route('home')
             ->with([
-                'success' => 'Ustunlikli cykys edildi',
+                'success' => trans('app.logoutSuccess'),
             ]);
     }
 }

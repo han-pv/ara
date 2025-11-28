@@ -6,7 +6,7 @@
             <input type="text" placeholder="{{ __('app.whatsOnYourMind') }}">
             <a href="{{ route('posts.create') }}" class="btn-custom">
                 <i class="bi bi-plus-circle"></i>
-                New Post
+                {{ __('app.newPost') }}
             </a>
         </div>
     </div>
@@ -16,14 +16,14 @@
             @include('client.partials.post-card')
         @empty
             <div class="h1 text-center">
-                Post tapylmady
+                {{ __('app.postNotFound') }}
             </div>
         @endforelse
     </div>
     @if ($posts->hasMorePages())
         <div class="text-center mb-5">
             <button id="load-more" class="btn-load-more" data-next-page="{{ $posts->currentPage() + 1 }}">
-                + Show More
+                + {{ __('app.showMore') }}
             </button>
         </div>
     @endif

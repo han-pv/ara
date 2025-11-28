@@ -18,7 +18,7 @@ class FollowController extends Controller
 
         if ($me == $userId) {
             return redirect()->back()->with([
-                'error' => "Oz ozuni follow edip bolanok"
+                'error' => trans('app.followErrorSelf'),
             ]);
         }
 
@@ -38,11 +38,11 @@ class FollowController extends Controller
 
         if ($followed) {
             return redirect()->back()->with([
-                'success' => 'Followed',
+                'success' => trans('app.followed'),
             ]);
         }
         return redirect()->back()->with([
-            'error' => 'Unfollowed',
+            'error' => trans('app.unfollowed'),
         ]);
     }
 }

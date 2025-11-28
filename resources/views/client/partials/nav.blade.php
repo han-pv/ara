@@ -1,6 +1,8 @@
 <nav class="navbar navbar-expand-lg">
     <div class="container">
-        <a class="navbar-brand" href="{{ route('posts.index') }}">ARA</a>
+        <a class="navbar-brand" href="{{ route('posts.index') }}">
+            {{ __('app.appName') }}
+        </a>
 
         <div class="d-flex align-items-center gap-3">
             <div style="position: relative;">
@@ -47,7 +49,7 @@
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li>
                         <a class="dropdown-item" href="{{ route('profile.edit', auth()->id()) }}">
-                            Edit Profile
+                            {{ __('app.editProfile') }}
                             <i class="bi bi-pencil ms-2"></i>
                         </a>
                     </li>

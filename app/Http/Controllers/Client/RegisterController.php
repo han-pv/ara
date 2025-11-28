@@ -43,7 +43,7 @@ class RegisterController extends Controller
         $request->session()->regenerate();
 
         return to_route('posts.index')->with([
-            'success' => "Siz üstünlikli hasaba alyndyňyz"
+            'success' => trans('app.registerSuccess')
         ]);
     }
 }

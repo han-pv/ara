@@ -28,7 +28,7 @@ class CommentController extends Controller
         ]);
 
         return redirect()->back()->with([
-            "success" => "Comment yazyldy"
+            "success" => trans('app.commentAdded')
         ]);
     }
 
@@ -38,7 +38,7 @@ class CommentController extends Controller
         $comment->delete();
 
         return redirect()->back()->with([
-            "success" => "Comment pozuldy"
+            "success" => trans('app.commentDeleted')
         ]);
     }
 }
