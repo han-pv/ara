@@ -14,8 +14,6 @@ return new class extends Migration {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('bio')->nullable();
-            $table->string('bio_tm')->nullable();
-            $table->string('bio_ru')->nullable();
             $table->string('avatar')->nullable();
             $table->timestamps();
         });
