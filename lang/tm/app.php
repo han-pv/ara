@@ -28,6 +28,7 @@ return [
     "register" => "Hasaba al",
     "posts" => "Postlar",
     "myProfile" => "Meniň profilim",
+    "loadMore" => "Ýene ýükle",
     "followers" => "Yzarlaýjylar",
     "followings" => "Yzarlaýanlar",
     "settings" => "Sazlamalar",

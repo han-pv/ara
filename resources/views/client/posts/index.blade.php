@@ -23,7 +23,7 @@
     @if ($posts->hasMorePages())
         <div class="text-center mb-5">
             <button id="load-more" class="btn-load-more" data-next-page="{{ $posts->currentPage() + 1 }}">
-                + {{ __('app.showMore') }}
+                + {{ __('app.loadMore') }}
             </button>
         </div>
     @endif
@@ -48,6 +48,8 @@
                             const newPosts = htmlDoc.getElementById('posts-container').innerHTML;
 
                             document.getElementById('posts-container').insertAdjacentHTML('beforeend', newPosts);
+
+                            attachLikeButtonListeners();
 
                             const newButton = htmlDoc.getElementById('load-more');
                             if (newButton) {

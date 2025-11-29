@@ -44,7 +44,7 @@ return [
     "edit" => "Редактировать",
     "edited" => "Отредактировано",
     "travel" => "Путешествия",
-    "posts_count" => ":count постов",
+    "showMore" => "Показать еще",
     "trending" => "В тренде",
     "suggestionsForYou" => "Рекомендации для вас",
     "home" => "Главная",
